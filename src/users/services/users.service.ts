@@ -1,8 +1,12 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { User } from "../controllers/models/user.interface";
+import {LazyModuleLoader} from "@nestjs/core";
 
 @Injectable()
 export class UsersService {
+  constructor(private lazyModuleLoader: LazyModuleLoader) {
+  }
+
   private users: User[] = [
     { id: 1, fName: "Jakub", lName: "Radzik", age: 21 },
     { id: 2, fName: "Piotr", lName: "Patolus", age: 21 },
