@@ -8,7 +8,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
-  Scope,
+  Scope, UseFilters, UseInterceptors,
   UsePipes,
 } from "@nestjs/common";
 import {UsersService} from "../services/users.service";
@@ -16,15 +16,20 @@ import {User} from "./models/user.interface";
 import {CounterService} from "../services/counter/counter.service";
 import {REQUEST} from "@nestjs/core";
 import {Request} from "express";
+import {ContextInterceptor} from "../interceptors/context.interceptor";
+import {ContextFilter} from "../filters/context.filter";
+import {LifehookService} from "../services/lifehook/lifehook.service";
 
 @Controller({
   path: "user",
   scope: Scope.REQUEST
 })
+@UseFilters(ContextFilter)
 export class UsersController {
   constructor(
     private usersService: UsersService,
     private counterService: CounterService,
+    private lifehookService: LifehookService,
     @Inject(REQUEST) private request: Request
   ) {}
 
@@ -33,9 +38,10 @@ export class UsersController {
   @Get()
   findAll() {
     // this.counterService.show();
-    console.log(this.c)
-    this.c = this.c + this.c;
-    console.dir(this.request);
+    // console.log(this.c)
+    // this.c = this.c + this.c;
+    // console.dir(this.request);
+    throw new Error();
     return this.usersService.getAll();
   }
 
