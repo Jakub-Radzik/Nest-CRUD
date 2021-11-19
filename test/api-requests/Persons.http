@@ -1,10 +1,39 @@
+PATCH http://localhost:3000/persons/1
+Content-Type: application/json
+
+{
+  "firstName": "Andrzej",
+  "lastName": "Radzikol",
+  "isActive": false
+}
+
+###
+PATCH http://localhost:3000/persons/1
+Content-Type: application/json
+
+{
+"isActive": true
+}
+
+
+###
+POST http://localhost:80/api/item
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:3000/persons/1
+Accept: application/json
+
+###
 POST http://localhost:3000/persons
 Content-Type: application/json
 
 {
   "firstName": "Jakub",
-  "lastName" : "Radzik",
-  "isActive" : "true"
+  "lastName": "Radzik",
+  "isActive": true
 }
 
 ###
@@ -12,3 +41,4 @@ GET http://localhost:3000/persons
 Accept: application/json
 
 ###
+

@@ -13,11 +13,10 @@ export class PersonsService {
   ) {}
 
   create(createPersonDto: CreatePersonDto) {
-    return this.userRepository.create(createPersonDto);
-    // return "This action adds a new person";
+    return this.userRepository.insert(createPersonDto);
   }
 
-  findAll() {
+  findAll(): Promise<Person[]> {
     return this.userRepository.find();
   }
 
@@ -26,7 +25,7 @@ export class PersonsService {
   }
 
   update(id: number, updatePersonDto: UpdatePersonDto) {
-    return `This action updates a #${id} person`;
+    return this.userRepository.update(id, updatePersonDto);
   }
 
   remove(id: number) {
