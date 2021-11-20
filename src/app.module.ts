@@ -9,6 +9,8 @@ import { TwoService } from "./circular dependencies/two/two.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Connection } from "typeorm";
 import { Person } from "./persons/entities/person.entity";
+import { PhotoModule } from "./photo/photo.module";
+import { Photo } from "./photo/entities/photo.entity";
 
 @Module({
   imports: [
@@ -22,9 +24,10 @@ import { Person } from "./persons/entities/person.entity";
       username: "user",
       password: "password",
       database: "db",
-      entities: [Person],
+      entities: [Person, Photo],
       synchronize: true,
     }),
+    PhotoModule,
   ],
   controllers: [AppController],
   providers: [AppService, OneService, TwoService],

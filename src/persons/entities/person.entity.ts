@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Photo } from "../../photo/entities/photo.entity";
 
 @Entity()
 export class Person {
@@ -13,4 +14,7 @@ export class Person {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(() => Photo, (photo) => photo.user)
+  photos: Photo[];
 }
